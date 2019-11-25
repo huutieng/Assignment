@@ -97,4 +97,8 @@ export class TrangxemlaibaithiComponent implements OnInit {
       }
     });
   }
+  dangxuat() {
+    this.Student = null;
+    localStorage.setItem('user', JSON.stringify(this.Student));
+  }
 }

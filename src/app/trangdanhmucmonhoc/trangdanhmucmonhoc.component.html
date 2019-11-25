@@ -46,7 +46,7 @@
                         <img src={{i.Logo}} class="myImg">
                     </div>
                     <div class="card-footer text-muted">
-                        <a [routerLink]="['/danhmucmonhoc', i.Id]">{{i.Name}}</a>
+                        <a [routerLink]="['/danhmucmonhoc', i.Id]" >{{i.Name}}</a>
                     </div>
                 </div>
             </div>
@@ -56,9 +56,6 @@
                 <i class='far fa-hand-point-down' style="margin: 0 2% 0 2%; font-size: 150%" (click) = 'end()'></i>
                 <i class='far fa-hand-point-left' style="margin: 0 2% 0 2%; font-size: 150%" (click) = 'previrous()'></i>
             </div>
-            <ul>
-                <li *ngFor = "let i of student">{{i.fullname}}</li>
-            </ul>
         </div>
         <div class="containerright">
             <li class="list-group-item dmmh"><i class='fas fa-th-large'></i>Danh mục môn học</li>

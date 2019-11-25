@@ -46,7 +46,7 @@
                 <div class="card-body text-success myCardBody" *ngFor="let i of Quiz | paginate: {itemsPerPage: pagesize, currentPage: pagecurrent}">
                     <p>Câu {{pagecurrent}}: {{i.Text}}</p>
                     <div class="form-check" *ngFor = 'let j of i.Answers'>
-                        <input class="form-check-input" type="radio" name="vote" (click) = 'addvote(j.Id)'>
+                        <input class="form-check-input" type="radio" name="vote">
                         <label class="form-check-label" for="exampleRadios1">
                             {{j.Text}}
                         </label>
@@ -59,7 +59,7 @@
                         <i class='far fa-hand-point-down' style="font-size: 150%" (click) = 'end()' *ngIf = "showlast"></i>
                         <i class='far fa-hand-point-left' style="font-size: 150%" (click) = 'previrous()' *ngIf = "showbegin"></i>
 
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click) = 'finish()' *ngIf = 'showfinish'>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" *ngIf = 'showfinish'>
                             Hoàn thành
                         </button>
             
@@ -74,7 +74,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        Điểm của bạn là: {{mark}}
+                                        Điểm của bạn là:
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Tiếp tục</button>

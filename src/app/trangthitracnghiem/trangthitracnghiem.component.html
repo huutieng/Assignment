@@ -43,9 +43,22 @@
         <div class="containerleft">
             <div class="top">
                 <div class="card border-success myCard">
-                    <div class="card-header bg-transparent border-success">
-                        Điểm: {{mark}}
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card-header bg-transparent border-success">
+                                Điểm: {{mark}}
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                                <div class="col-sm-6">
+                                        <h5 style="text-align: right;" >Thời gian còn lại:
+                                                <span id="m">{{m}}</span> phút
+                                                <span id="s">{{s}}</span> giây
+                                            </h5>
+                                </div>
+                        </div>
                     </div>
+                    
                     <div class="card-body text-success myCardBody" *ngFor="let i of Quiz | paginate: {itemsPerPage: pagesize, currentPage: pagecurrent}">
                         <p>Câu {{pagecurrent}}: {{i.Text}}</p>
                         <div class="form-check" *ngFor = 'let j of i.Answers'>
@@ -58,7 +71,7 @@
                     <div class="card-footer bg-transparent border-success text-center">
                         <div class="bottom">
                             <i class='far fa-hand-point-up' style="font-size: 150%" (click) = 'home()' *ngIf = "showfirth"></i>
-                            <i class='far fa-hand-point-right' style="font-size: 150%" (click) = 'next()' *ngIf = "showend"></i>
+                            <i class='far fa-hand-point-right' style="font-size: 150%" (click) = 'next()' (click)='start()' *ngIf = "showend"></i>
                             <i class='far fa-hand-point-down' style="font-size: 150%" (click) = 'end()' *ngIf = "showlast"></i>
                             <i class='far fa-hand-point-left' style="font-size: 150%" (click) = 'previrous()' *ngIf = "showbegin"></i>
 

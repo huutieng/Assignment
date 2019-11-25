@@ -24,12 +24,21 @@ export class TrangthitracnghiemComponent implements OnInit {
   task = {
     "IdSubject": "",
     Ans: [],
+    "p": 0,
+    "s": 0,
   }
   Student = JSON.parse(localStorage.getItem('user'));
   Students = JSON.parse(localStorage.getItem('listuser'));
   mark = 0;
   show = false;
 
+  showthi = true;
+  showsubject = false;
+  m = 90;
+  s = 0;
+  p = 90;
+  g = 0;
+  timeout = null;
   constructor(private http:HttpClient) { }
   
   ngOnInit() {
@@ -136,4 +145,44 @@ export class TrangthitracnghiemComponent implements OnInit {
       });
     });
   }
+  dangxuat() {
+    this.Student = null;
+    localStorage.setItem('user', JSON.stringify(this.Student));
+  }
+  start() {
+    this.showthi = false;
+    if (this.s === -1){
+      this.m -= 1;
+      this.s = 59;
+    }
+    if (this.m == -1){
+      clearTimeout(this.timeout);
+      this.tinhdiem();
+      this.Student.marks = this.mark;
+      this.task.IdSubject = this.Id;
+      this.task.p = this.p;
+      this.task.s = this.g;
+      this.stop();
+      for(var i = 0; i < this.Students.length; i++) {
+        if(this.Student.username === this.Students[i].username) {
+          this.Students[i].marks = this.mark;
+        }
+      }
+      localStorage.setItem('listuser', JSON.stringify(this.Students));
+      localStorage.setItem('user', JSON.stringify(this.Student));
+      localStorage.setItem('task', JSON.stringify(this.task));
+      document.getElementById('exampleModalhetgio').style.display = "block";
+      return false;
+    }
+    document.getElementById('m').innerText = this.m.toString();
+    document.getElementById('s').innerText = this.s.toString();
+    this.timeout = setTimeout(()=>{
+      this.s--;
+      this.start();
+    }, 1000);
+  } 
+  stop(){
+      clearTimeout(this.timeout);
+  }
 }
+
